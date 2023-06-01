@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-Powered Translator</title>
+    <script src="jquery.min.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="./fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="./fontawesome/css/solid.css">
+    <style>
+        body {
+            margin-left: 15px;
+            margin-right: 15px;
+            min-width: 470px;
+            min-height: 70px;
+        }
+        /* header */
+        /* input */
+        #inputArea {
+            display: flex;
+        }
+        #inputArea #translateArea {
+            display: inline-block;
+            position: relative;
+            width: 300px;
+            height: 35px;
+        }
+        #inputArea form {
+            margin-top: 1px;
+            line-height: 25px;
+            border: 1px solid black;
+            border-radius: 3px;
+            background-color: #EFEFEF;
+        }
+        #inputArea form #input {
+            margin-left: 5px;
+            width: 240px;
+            height: 30px;
+            border: 0px;
+            background-color: #EFEFEF;
+        }
+        #inputArea form #input:focus {
+            outline: none;
+        }
+        #inputArea form button {
+            position: absolute;
+            right: 6px;
+            top: 10px;
+            cursor: pointer;
+            border: 0px;
+        }
+        #inputArea #toLangArea {
+            display: inline-block;
+        }
+        #inputArea #toLangArea #leftArrow {
+            margin-left: 6px;
+            margin-top: 10px;
+            border: 0px;
+            cursor: pointer;
+        }
+        #inputArea #toLangArea #toLang {
+            margin-left: 3px;
+            width: 115px;
+            height: 35px;
+            border: 0px;
+            background-color: white;
+            text-align: center;
+            appearance: none;
+            border-radius: 10px;
+            color: #a1a1a1;
+            font-weight: bold;
+        }
+        #inputArea #toLangArea #toLang:hover{ 
+            background-color: #EFEFEF;
+            cursor: pointer;
+        }
+        #inputArea #toLangArea #toLang option {
+            color: #2c2c2c;
+        }
+        /* output */
+        #originalText, #output {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: balck;
+        }
+        #toLanguage {
+            color: #808080;
+            border: 0px;
+            border-radius: 8px;
+            background-color: white;
+            width: 115px;
+            height: 25px;
+            text-align: center;
+            appearance: none;
+        }
+        #toLanguage:hover {
+            background-color: #EFEFEF;
+            cursor: pointer;
+        }
+        #toLanguage:disabled {
+            background-color: #EFEFEF;
+            cursor: default;
+        }
+        #arrow {
+            margin-right: 8px;
+            color: #808080;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div></div>
+        <h3 id="name">GPT-Powered Translator</h3>
+    </div>
+    <div id="inputArea">
+        <div id="translateArea">
+            <form id="translateForm">
+                <input id="input"/><button type="submit" class="fa-solid fa-paper-plane translate" style="color: #a1a1a1" id="translate"></button>
+            </form>
+        </div>
+        <div id="toLangArea">
+            <button id="leftArrow" class="fa-solid fa-right-long fa-2xl translate" style="color: #a1a1a1;"></button>
+            <select id="toLang">
+                <option value="none" selected disable hidden>Language</option>
+            </select>
+        </div>
+    </div>
+    <p id="notif" style="color: #d15a5a; font-size: medium"></p>
+    <div id="outputArea">
+        <p id="originalText"></p>
+        <select id="toLanguage"></select>
+        <div id="loadingDiv"></div>
+        <p id="output"></p>
+    </div>
+</body>
+</html>

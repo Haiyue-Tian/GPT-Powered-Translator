@@ -4,17 +4,17 @@
     "version": "1.0",
     "description": "GPT-Powered Translator is a Chrome extension that leverages the power of GPT language models to provide real-time, context-aware translations for selected text or user-inputted phrases, thereby enhancing browsing experience and breaking down language barriers.",
     "icons": {
-        "128": "GPT-Powered Translator-128.png",
-        "48": "GPT-Powered Translator-48.png",
-        "16": "GPT-Powered Translator-16.png"
+        "128": "./images/icon128.png",
+        "48": "./images/icon48.png",
+        "16": "./images/icon16.png"
     },
     "action": {
-        "default_icon": "GPT-Powered Translator-16.png",
-        "default_popup": "popup.html",
+        "default_icon": "./images/icon16.png",
+        "default_popup": "./html/popup.html",
         "defualt_title": "GPT-Powered Translator"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "./js/background.js"
     },
     "permissions": [
         "tabs",
@@ -22,5 +22,5 @@
         "scripting",
         "storage"
     ],
-    "options_page": "options.html"
+    "options_page": "./html/options.html"
 }

@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    margin: 0 0 0 0;
+    width: 15vw;
+}
+
+.content {
+    width: 85vw;
+    background-color: white;
+    color: black;
+}
+.content>div {
+    display: none;
+}
+.content .current {
+    display: block;
+}
+
+
+/* sidebar setting */
+.sidebar .icon {
+    margin-top: 3vh;
+    margin-left: 5vw;
+    width: 10vh;
+    height: 10vh;
+    background-size: contain;
+    background-image: url(../images/icon128.png);
+}
+.sidebar ul {
+    margin-top: 3vh;
+    margin-left: 1vw;
+    color: #259a7c;
+}
+.sidebar li {
+    height: 4vh;
+    line-height: 4vh;
+    cursor: pointer;
+    padding-left: 1vw;
+    border-radius: .5em;
+    font-size: 2vh;
+}
+.sidebar li:hover:not(.active) {
+    background-color: rgba(0, 0, 0, .1);
+}
+.sidebar .active {
+    color: white;
+    background-color: #93CCC6;
+}
+
+/* content setting */
+.content>div {
+    padding: 10vh 20vw 0 20vw;
+}
+.content>div h2 {
+    color: black;
+}
+.content>div .separator {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    height: .1vh;
+    background-color: #aaaaaa;
+}
+
+/* langForm setting */
+div.inputBox {
+    padding-left: .5em;
+    display: flex;
+    width: 45vw;
+    height: 2em;
+    background-color: #F5F7FA;
+    border-radius: .5em;
+}
+div.inputBox .tags {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+}
+div.inputBox input {
+    margin-left: .5em;
+    margin-right: 1em;
+    flex-grow: 1;
+    border: 0;
+    line-height: 2em;
+    background-color: #F5F7FA;
+}
+div.inputBox .langTag {
+    margin-left: .5em;
+    padding-left: .5em;
+    padding-right: .5em;
+    font-size: 13px;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(147, 204, 198, .4);
+    border-radius: .3em;
+    cursor: pointer;
+}
+div.inputBox .langTag:hover {
+    background-color: rgba(147, 204, 198, .8);
+}
+div.inputBox .langTag button {
+    margin-left: .5em;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+}
+div.inputBox .langTag.chosen {
+    background-color: rgba(147, 204, 198, .8);
+}
+div.langForm>div {
+    margin-top: 5vh;
+}

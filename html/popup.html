@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPT-Powered Translator</title>
-    <script src="jquery.min.js"></script>
-    <script src="popup.js"></script>
-    <link rel="stylesheet" href="./fontawesome/css/fontawesome.css">
-    <link rel="stylesheet" href="./fontawesome/css/solid.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popup.js"></script>
+    <link rel="stylesheet" href="../css/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/solid.css">
     <style>
         body {
             margin-left: 15px;
@@ -17,6 +17,20 @@
             min-height: 70px;
         }
         /* header */
+        #header {
+            display: flex;
+            align-items: center;
+        }
+        #header #icon {
+            width: 24px;
+            height: 24px;
+            background-image: url("../images/icon128.png");
+            background-size: cover;
+        }
+        #header #name {
+            margin-left: 10px;
+            color: #93CCC6;
+        }
         /* input */
         #inputArea {
             display: flex;
@@ -44,12 +58,13 @@
         #inputArea form #input:focus {
             outline: none;
         }
-        #inputArea form button {
+        #translate {
             position: absolute;
             right: 6px;
             top: 10px;
             cursor: pointer;
             border: 0px;
+            transition: .2s;
         }
         #inputArea #toLangArea {
             display: inline-block;
@@ -59,6 +74,7 @@
             margin-top: 10px;
             border: 0px;
             cursor: pointer;
+            transition: .2s;
         }
         #inputArea #toLangArea #toLang {
             margin-left: 3px;
@@ -78,6 +94,9 @@
         }
         #inputArea #toLangArea #toLang option {
             color: #2c2c2c;
+        }
+        .btn:hover {
+            transform: translate(1px, -1px);
         }
         /* output */
         #originalText, #output {
@@ -111,7 +130,7 @@
 </head>
 <body>
     <div id="header">
-        <div></div>
+        <div id="icon"></div>
         <h3 id="name">GPT-Powered Translator</h3>
     </div>
     <div id="inputArea">
@@ -130,7 +149,8 @@
     <p id="notif" style="color: #d15a5a; font-size: medium"></p>
     <div id="outputArea">
         <p id="originalText"></p>
-        <select id="toLanguage"></select>
+        <div id="toLangOutput">
+        </div>
         <div id="loadingDiv"></div>
         <p id="output"></p>
     </div>

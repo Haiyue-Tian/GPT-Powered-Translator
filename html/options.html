@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-Powered Translator Options</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/options.js"></script>
+    <link rel="stylesheet" href="../css/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/solid.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/options.css">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="icon"></div>
+            <ul>
+                <li class="active">
+                    <div>
+                        <i class="fa-solid fa-gear"></i>
+                        Setting
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="current">
+                <h2>Setting</h2>
+                <div class="separator"></div>
+                <div id="langForm">
+                    <p>Please type your preferred languages and select your primary language (up to 3)</p>
+                    <div class="inputBox">
+                        <div class="tags"></div><input type="text" id="prefLang" list="langsCandi">
+                        <datalist id="langsCandi"></datalist>
+                    </div>
+
+                    <div id="openai">
+                        <p id="text"></p>
+                        OPENAI_API_KEY: <input id="openaiApiKey"/><br>
+                        Model: <input id="model" placeholder="gpt-3.5-turbo"/>
+                    </div>
+                    <div id="proxy">
+                        Proxy: <input id="proxyUrl">
+                    </div>
+                    <br>
+                    <div id="submit">
+                        <button type="submit" id="default">default</button>
+                        <button type="submit" id="apply">submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

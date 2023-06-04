@@ -1,0 +1,50 @@
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set background color, font, and color for the body */
+body {
+    background-color: #F5F7FA;
+    font: 16px/1.5 Arial, sans-serif;
+    color: #A6A6A6;
+}
+
+/* Style for hyperlinks, remove underline */
+a {
+    color: #545C63;
+    text-decoration: none;
+}
+
+/* Style for hyperlinks on hover */
+a:hover {
+    color: #07111b;
+}
+
+/* Remove default list styles for list items */
+li {
+    list-style: none;
+}
+
+/* Make all emphasized text (em, i) normal */
+em, i {
+    font-style: normal;
+}
+
+/* Remove border from images, align vertically in the middle */
+img {
+    border: 0; /* IE6 */
+    vertical-align: middle;
+}
+
+/* Set cursor as pointer for buttons */
+button {
+    cursor: pointer;
+}
+
+/* Set font family for buttons and inputs, remove default outline */
+button, input {
+    font-family: Arial, sans-serif;
+    outline: none;
+}

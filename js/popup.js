@@ -21,6 +21,8 @@ $(() => {
         $('#translate').prop('disabled', true);
         $('#leftArrow').css('cursor', 'default');
         $('#translate').css('cursor', 'default');
+        $('#leftArrow').removeClass('btn');
+        $('#translate').removeClass('btn');
     }
 
     const enableInputArea = () => {
@@ -28,13 +30,15 @@ $(() => {
         $('#leftArrow').css('cursor', 'pointer');
         $('#translate').css('cursor', 'pointer');
         $('#toLang').css('cursor', 'pointer');
+        $('#leftArrow').addClass('btn');
+        $('#translate').addClass('btn');
     }
 
     const getData = () => {
         return new Promise((resolve) => {
             chrome.storage.sync.get(['selectedPLang', 'OPENAI_API_KEY', 'toLang'], (result) => {
                 let res;
-                if (result.selectedPLang.length && result.OPENAI_API_KEY && result.toLang) {
+                if (result.selectedPLang && result.selectedPLang.length && result.OPENAI_API_KEY && result.toLang) {
                     res = {
                         "selectedPLang": result.selectedPLang,
                         "OPENAI_API_KEY": result.OPENAI_API_KEY,
@@ -57,13 +61,18 @@ $(() => {
     // init and get primary language if selected
     getData().then(result => {
         // hide toLanguage
-        $('#toLanguage').hide();
+        console.log(result);
         if (!result.disableInputArea) {
+            // $('toLangOutput').hide();
+            let toLanguage = $('<select/>', {id: 'toLanguage'});
+            // $('#toLanguage').hide();
             result.selectedPLang.forEach((item) => {
+                toLanguage.append($('<option>').val(item).text(item));
                 $('#toLang').append($('<option>').val(item).text(item));
-                $('#toLanguage').append($('<option>').val(item).text(item));
             });
             $('#toLang').val(result.toLang);
+            $('#toLangOutput').hide();
+            $('#toLangOutput').append(toLanguage);
         } else {
             $('#notif').html(notifSetLang);
             disableInputArea("all");
@@ -80,7 +89,7 @@ $(() => {
         $('#originalText').html(input);
         chrome.storage.sync.get('toLang', (result) => {
             $('#toLanguage').val(result.toLang);
-            $('#toLanguage').show();
+            $('#toLangOutput').show();
             $('#toLanguage').before(arrowDownIcon);
         });
         $('#loadingDiv').show();
@@ -110,7 +119,7 @@ $(() => {
     }
 
     // translate
-    $('#toLanguage').change(() => {
+    $(document).on('change', '#toLanguage', () => {
         const toLang = $('#toLanguage').val();
         chrome.storage.sync.set({"toLang": toLang});
         $('#output').hide();

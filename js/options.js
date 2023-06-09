@@ -47,7 +47,8 @@ $(() => {
         $('.tags').append(tag);
     }
 
-    const applySubmitClickHandler = () => {
+    const applySubmitClickHandler = (isSubmit = 1) => {
+        let openaiApiKey = $('#openaiApiKey').val().trim();
         let toLang;
         let selectedPLang = [];
         let langTag = $('.langTag')
@@ -57,12 +58,36 @@ $(() => {
                 toLang = $(element).text();
             }
         });
+        if (isSubmit) {
+            $('#prefLangText').removeClass('err');
+            $('#priLangText').removeClass('err');
+            $('#openaiApiKeyText').removeClass('err');
+            let flag = false;
+            if (!selectedPLang.length) {
+                $('#prefLangText').addClass('err');
+                $('#priLangText').addClass('err');
+                flag = true;
+            }
+            if (!toLang) {
+                $('#priLangText').addClass('err');
+                flag = true;
+            }
+            if (!openaiApiKey) {
+                $('#openaiApiKeyText').addClass('err');
+                flag = true;
+            }
+            if (flag) {
+                return;
+            }
+        }
+
+        alert('Options have been saved');
 
         let model = $('#model').val().trim();
         let setSync = {
             'toLang': toLang,
             'selectedPLang': selectedPLang,
-            'OPENAI_API_KEY': $('#openaiApiKey').val().trim(),
+            'OPENAI_API_KEY': openaiApiKey,
             'model': model,
             'proxyUrl': $('#proxyUrl').val().trim()
         }
@@ -74,6 +99,24 @@ $(() => {
         } else {
             chrome.storage.sync.set(setSync);
         }
+    }
+
+    const applyDefaultClickHandler = () => {
+        let result = confirm('Are you sure you want to clear all settings?');
+        if (!result) {
+            return;
+        }
+        // primary language
+        $('#toLang').val('none');
+        // preferred languages
+        $('#chosenPLang').empty();
+        $('#selectPLang').val('none');
+        prefLang = [];
+        // api key, model, and proxy
+        $('#openaiApiKey').val("");
+        $('#model').val("");
+        $('#proxyUrl').val("");
+        applySubmitClickHandler(isSubmit = 0);
     }
 
     // init
@@ -113,14 +156,20 @@ $(() => {
         let contents = $('.content>div')
         lis.each((index, element) => {
             $(element).click(() => {
-                lis.each((_, element) => {
-                    $(element).removeClass("active");
-                });
-                $(element).addClass("active");
-                contents.each((_, element) => {
-                    $(element).removeClass("current");
-                });
-                $(contents[index]).addClass("current");
+                if ($(element).attr('id') == 'submit') {
+                    applySubmitClickHandler();
+                } else if ($(element).attr('id') == 'default') {
+                    applyDefaultClickHandler();
+                } else {
+                    lis.each((_, element) => {
+                        $(element).removeClass("active");
+                    });
+                    $(element).addClass("active");
+                    contents.each((_, element) => {
+                        $(element).removeClass("current");
+                    });
+                    $(contents[index]).addClass("current");
+                }
             });
         });
     }
@@ -141,7 +190,7 @@ $(() => {
                 matchedLang.forEach(lang => {
                     $('#langsCandi').append(`<option value="${lang}">`);
                 });
-            })
+            });
             $('#prefLang').on('change', () => {
                 const chosenLang = $('#prefLang').val();
                 if (langCandi.includes(chosenLang)) {
@@ -157,33 +206,9 @@ $(() => {
                     // clear input
                     $('#prefLang').val('');
                 }
-            })
+            });
         }).catch(error => {
             console.error(error);
         })
     }
-
-    // set as default
-    $('#default').click(() => {
-        let result = confirm('Are you sure you want to clear all settings?');
-        if (!result) {
-            return;
-        }
-        // primary language
-        $('#toLang').val('none');
-        // preferred languages
-        $('#chosenPLang').empty();
-        $('#selectPLang').val('none');
-        for (let key in languages) {
-            languages[key] = false;
-        }
-        // api key, model, and proxy
-        $('#openaiApiKey').val("");
-        $('#model').val("");
-        $('#proxyUrl').val("");
-        applySubmitClickHandler();
-    })
-
-    // apply changes
-    $('#apply').click(applySubmitClickHandler);
 });

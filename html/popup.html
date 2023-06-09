@@ -98,6 +98,10 @@
         .btn:hover {
             transform: translate(1px, -1px);
         }
+        #notif {
+           color: #d15a5a; 
+           font-size: medium; 
+        }
         /* output */
         #originalText, #output {
             font-family: Arial, Helvetica, sans-serif;
@@ -133,7 +137,7 @@
         <div id="icon"></div>
         <h3 id="name">GPT-Powered Translator</h3>
     </div>
-    <div id="inputArea">
+    <div id="inputArea" class="current">
         <div id="translateArea">
             <form id="translateForm">
                 <input id="input"/><button type="submit" class="fa-solid fa-paper-plane translate" style="color: #a1a1a1" id="translate"></button>
@@ -146,7 +150,7 @@
             </select>
         </div>
     </div>
-    <p id="notif" style="color: #d15a5a; font-size: medium"></p>
+    <div id="notif" class="current"></div>
     <div id="outputArea">
         <p id="originalText"></p>
         <div id="toLangOutput">

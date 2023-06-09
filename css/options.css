@@ -22,15 +22,13 @@
 
 /* sidebar setting */
 .sidebar .icon {
-    margin-top: 3vh;
-    margin-left: 5vw;
+    margin: 3vh 0 3vh 5vw;
     width: 10vh;
     height: 10vh;
     background-size: contain;
     background-image: url(../images/icon128.png);
 }
 .sidebar ul {
-    margin-top: 3vh;
     margin-left: 1vw;
     color: #259a7c;
 }
@@ -49,6 +47,17 @@
     color: white;
     background-color: #93CCC6;
 }
+.sidebar .titleSide {
+    font-size: 14px;
+    margin-left: 1vw;
+    height: 4vh;
+    line-height: 4vh;
+}
+.sidebar .separator {
+    margin: 1vh .1vw 1vh 1vw;
+    height: .1vh;
+    background-color: #d9d9d9;
+}
 
 /* content setting */
 .content>div {
@@ -58,10 +67,17 @@
     color: black;
 }
 .content>div .separator {
-    margin-top: 1vh;
+    margin-top: 2vh;
     margin-bottom: 1vh;
     height: .1vh;
     background-color: #aaaaaa;
+}
+.content .title {
+    color: #b5b5b5;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.5em;
+    height: 1.5em;
 }
 
 /* langForm setting */
@@ -99,7 +115,7 @@ div.inputBox .langTag {
     cursor: pointer;
 }
 div.inputBox .langTag:hover {
-    background-color: rgba(147, 204, 198, .8);
+    background-color: rgba(147, 204, 198, 1);
 }
 div.inputBox .langTag button {
     margin-left: .5em;
@@ -107,8 +123,32 @@ div.inputBox .langTag button {
     border: 0;
 }
 div.inputBox .langTag.chosen {
-    background-color: rgba(147, 204, 198, .8);
+    background-color: rgba(147, 204, 198, 1);
 }
 div.langForm>div {
     margin-top: 5vh;
+}
+div.text {
+    line-height: 3em;
+}
+div.separator2 {
+    margin-bottom: 2vh;
+    height: .1vh;
+    background-color: #d9d9d9;
+}
+input.setting {
+    margin-bottom: .5em;
+    padding-left: 1em;
+    width: 45vw;
+    height: 2.5em;
+    line-height: 2.5em;
+    background-color: #F5F7FA;
+    border: 0;
+    border-radius: .5em;
+}
+input::placeholder {
+    color: #b4b4b4;
+}
+.err {
+    color: red;
 }

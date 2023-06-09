@@ -17,6 +17,7 @@
     <div class="container">
         <div class="sidebar">
             <div class="icon"></div>
+            <div class="titleSide">General</div>
             <ul>
                 <li class="active">
                     <div>
@@ -24,32 +25,44 @@
                         Setting
                     </div>
                 </li>
-            </ul>
+            </ul> 
+            <div class="separator"></div>
+            <div class="titleSide">Actions</div>
+            <ul>
+                <li id="submit">Apply changes</li>
+                <li id="default">Discard changes</li>
+            </ul> 
+            <div class="separator"></div>
         </div>
         <div class="content">
             <div class="current">
                 <h2>Setting</h2>
                 <div class="separator"></div>
                 <div id="langForm">
-                    <p>Please type your preferred languages and select your primary language (up to 3)</p>
+                    <div class="title">Language Setting</div>
+                    <div class="text" id="prefLangText">Please type and select your preferred languages (up to 3)</div>
                     <div class="inputBox">
                         <div class="tags"></div><input type="text" id="prefLang" list="langsCandi">
                         <datalist id="langsCandi"></datalist>
                     </div>
+                    <div class="text" id="priLangText">Please select one of the above languages as your primary language</div>
+                    <div class="separator2"></div>
 
                     <div id="openai">
-                        <p id="text"></p>
-                        OPENAI_API_KEY: <input id="openaiApiKey"/><br>
-                        Model: <input id="model" placeholder="gpt-3.5-turbo"/>
+                        <div class="title">OpenAI Setting</div>
+                        <div class="text" id="openaiApiKeyText">OPENAI_API_KEY</div>
+                        <input id="openaiApiKey" class="setting"/>
+                        <div class="text">Model (Optional)</div>
+                        <input id="model" class="setting" placeholder="gpt-3.5-turbo"/>
                     </div>
-                    <div id="proxy">
-                        Proxy: <input id="proxyUrl">
+                    <div class="separator2"></div>
+
+                    <div id="proxy" class="text">
+                        <div class="title">Proxy Setting</div>
+                        <div class="text">Proxy URL (Optional)</div>
+                        <input id="proxyUrl" class="setting" placeholder="api.openai.com">
                     </div>
-                    <br>
-                    <div id="submit">
-                        <button type="submit" id="default">default</button>
-                        <button type="submit" id="apply">submit</button>
-                    </div>
+                    <div class="separator2"></div>
                 </div>
             </div>
         </div>
